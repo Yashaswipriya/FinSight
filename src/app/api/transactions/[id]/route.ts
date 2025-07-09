@@ -1,38 +1,42 @@
-import { NextRequest, NextResponse } from "next/server";
-import { connectToDatabase } from "@/lib/db";
-import {Transaction} from "@/models/transaction";
-import { Types } from "mongoose";
+import { NextRequest, NextResponse } from 'next/server';
+import { connectToDatabase } from '@/lib/db';
+import { Transaction } from '@/models/transaction';
+import { Types } from 'mongoose';
 
-// DELETE handler
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+type Context = {
+  params: {
+    id: string;
+  };
+};
+
+export async function DELETE(req: NextRequest, context: Context) {
   await connectToDatabase();
 
   const { id } = context.params;
 
   if (!Types.ObjectId.isValid(id)) {
-    return NextResponse.json({ success: false, error: "Invalid ID format" }, { status: 400 });
+    return NextResponse.json({ success: false, error: 'Invalid ID format' }, { status: 400 });
   }
 
   try {
     await Transaction.findByIdAndDelete(id);
-    return NextResponse.json({ success: true, message: "Transaction deleted" });
+    return NextResponse.json({ success: true, message: 'Transaction deleted' });
   } catch (error) {
-    console.error("Failed to delete transaction:", error);
+    console.error('Failed to delete transaction:', error);
     return NextResponse.json(
-      { success: false, message: "Failed to delete transaction" },
+      { success: false, message: 'Failed to delete transaction' },
       { status: 500 }
     );
   }
 }
 
-// PATCH handler
-export async function PATCH(req: NextRequest, context: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: Context) {
   await connectToDatabase();
 
   const { id } = context.params;
 
   if (!Types.ObjectId.isValid(id)) {
-    return NextResponse.json({ success: false, error: "Invalid ID format" }, { status: 400 });
+    return NextResponse.json({ success: false, error: 'Invalid ID format' }, { status: 400 });
   }
 
   const body = await req.json();
@@ -46,16 +50,17 @@ export async function PATCH(req: NextRequest, context: { params: { id: string } 
     );
 
     if (!updated) {
-      return NextResponse.json({ success: false, error: "Transaction not found" }, { status: 404 });
+      return NextResponse.json({ success: false, error: 'Transaction not found' }, { status: 404 });
     }
 
     return NextResponse.json({ success: true, data: updated });
   } catch (error) {
-    console.error("Failed to update transaction:", error);
+    console.error('Failed to update transaction:', error);
     return NextResponse.json(
-      { success: false, message: "Failed to update transaction" },
+      { success: false, message: 'Failed to update transaction' },
       { status: 500 }
     );
   }
 }
+
 
