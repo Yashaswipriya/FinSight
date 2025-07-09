@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💸 FinSight – Personal Finance Tracker
 
-## Getting Started
+FinSight is a full-stack web application that helps users efficiently manage their personal finances. It allows users to track **transactions**, **visualize expenses**, **categorize spending**, and even **set monthly budgets** — all in a clean and intuitive interface.
 
-First, run the development server:
+This project was built with modern tools like **Next.js**, **MongoDB**, **Tailwind CSS**, **shadcn/ui**, and **Recharts**, ensuring both performance and scalability.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> ✅ Live Demo: [https://finsight.vercel.app](https://finsight.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### ✅ Stage 1: Basic Transaction Tracking
+- Add, edit, and delete transactions
+- View transactions in a scrollable, responsive list
+- Monthly expense **bar chart** to visualize spending trends
+- Input form with validation and error handling
 
-## Learn More
+### 🧠 Stage 2: Categorization & Dashboard
+- Predefined categories for transactions (Food, Transport, etc.)
+- Category-wise **Pie Chart** showing proportional spending
+- Interactive dashboard with:
+  - Total monthly expenses
+  - Breakdown by category
+  - Most recent transactions list
 
-To learn more about Next.js, take a look at the following resources:
+### 📊 Stage 3: Budgeting
+- Set monthly budgets per category
+- Compare budget vs actual spend
+- Smart insights highlighting overspending or safe zones
+- Intuitive UI for monthly planning and financial awareness
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+| Layer        | Tech Used                                |
+|--------------|-------------------------------------------|
+| Frontend     | React, Next.js, Tailwind CSS, shadcn/ui   |
+| Charts       | Recharts                                  |
+| Backend      | Next.js API Routes                        |
+| Database     | MongoDB (Mongoose ORM)                    |
+| Validation   | React Hook Form, Zod                      |
+| Deployment   | Vercel                                     |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Folder Structure
+src/
+├── app/
+│ ├── api/
+│ │ ├── transactions/ # Backend API route for transactions (GET, POST, DELETE)
+│ │ └── budgets/ # Backend API route for setting & fetching budgets
+│ ├── transactions/ # Transactions page (page.tsx, UI + logic)
+│ ├── budgets/ # Budgets page (page.tsx, budget input + display)
+│ └── page.tsx # Dashboard (homepage) – charts + recent data
+│
+├── components/
+│ ├── charts/ # Reusable BarChart.
+│ ├── forms/ # TransactionForm, BudgetForm, etc.
+│ └── ui/ # shadcn/ui components or wrappers (Button, Card, etc.)
+│
+├── lib/
+│ ├── db.ts # MongoDB connection helper
+│ └── utils.ts # Chart helpers, category-color mapping, etc.
+│
+└── models/
+├── transaction.ts # Mongoose schema for transactions
+└── budget.ts # Mongoose schema for budgets
+
+
