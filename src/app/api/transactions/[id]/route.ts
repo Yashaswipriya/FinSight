@@ -3,16 +3,13 @@ import { connectToDatabase } from '@/lib/db';
 import { Transaction } from '@/models/transaction';
 import { Types } from 'mongoose';
 
-type Context = {
-  params: {
-    id: string;
-  };
-};
-
-export async function DELETE(req: NextRequest, context: Context) {
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectToDatabase();
 
-  const { id } = context.params;
+  const { id } = params;
 
   if (!Types.ObjectId.isValid(id)) {
     return NextResponse.json({ success: false, error: 'Invalid ID format' }, { status: 400 });
@@ -30,10 +27,13 @@ export async function DELETE(req: NextRequest, context: Context) {
   }
 }
 
-export async function PATCH(req: NextRequest, context: Context) {
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectToDatabase();
 
-  const { id } = context.params;
+  const { id } = params;
 
   if (!Types.ObjectId.isValid(id)) {
     return NextResponse.json({ success: false, error: 'Invalid ID format' }, { status: 400 });
@@ -62,5 +62,4 @@ export async function PATCH(req: NextRequest, context: Context) {
     );
   }
 }
-
 
