@@ -5,11 +5,11 @@ import { Types } from 'mongoose';
 
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabase();
 
-  const { id } = params;
+  const { id } = await params;
 
   if (!Types.ObjectId.isValid(id)) {
     return NextResponse.json({ success: false, error: 'Invalid ID format' }, { status: 400 });
@@ -29,11 +29,11 @@ export async function DELETE(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await connectToDatabase();
 
-  const { id } = params;
+  const { id } = await params;
 
   if (!Types.ObjectId.isValid(id)) {
     return NextResponse.json({ success: false, error: 'Invalid ID format' }, { status: 400 });
@@ -62,4 +62,3 @@ export async function PATCH(
     );
   }
 }
-
