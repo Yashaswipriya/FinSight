@@ -123,7 +123,7 @@ export default function DashboardPage() {
             {pieData.length === 0 ? (
               <div className="flex flex-col justify-center items-center text-gray-500 text-sm">
                  <h2 className="text-xl font-semibold text-gray-700 mb-2">No transactions for {selectedMonth}</h2>
-                  <p className="text-gray-500 text-sm">You haven't added any transactions this month yet.</p>
+                  <p className="text-gray-500 text-sm">You haven&apos;t added any transactions this month yet.</p>
                   <Link href="/transactions" className="mt-4 text-blue-600 underline text-sm">Add your first transaction</Link>
               </div>
             ) :  (

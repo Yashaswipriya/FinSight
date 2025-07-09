@@ -97,10 +97,13 @@ export default function TransactionList() {
         const res = await axios.get('/api/transactions')
         setTransactions(res.data.data)
       } catch (error) {
-        setError('Failed to load transactions')
-      } finally {
-        setLoading(false)
-      }
+      const errorMessage =
+        error instanceof Error ? error.message : 'Something went wrong.';
+      toast.error(`Failed to load transaction transaction: ${errorMessage}`);
+    }
+      finally {
+              setLoading(false)
+            }
     }
 
     fetchTransactions()
@@ -118,7 +121,9 @@ export default function TransactionList() {
       toast.success('Transaction updated')
       setEditingId(null)
     } catch (error) {
-      toast.error('Failed to update')
+      const errorMessage =
+        error instanceof Error ? error.message : 'Something went wrong.';
+      toast.error(`Failed to update: ${errorMessage}`);
     }
   }
 

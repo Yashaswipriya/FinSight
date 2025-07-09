@@ -30,7 +30,7 @@ useEffect(() => {
   const fetchBudgets = async () => {
     try {
       const res = await axios.get(`/api/budgets?month=${month}`)
-      const data: any[] = res.data.data
+      const data: Transaction[] = res.data.data;
       const parsed = Object.fromEntries(data.map(b => [b.category, b.amount]))
       setBudgets(parsed)
     } catch (err) {
@@ -101,7 +101,7 @@ const insights = generateInsights()
         <div className="text-center mb-6 mt-8">
         <h1 className="text-2xl font-bold text-gray-800">Budgets</h1>
         <p className="text-sm text-gray-500">
-            Set monthly spending limits by category and track how close you're getting.
+            Set monthly spending limits by category and track how close you&apos;re getting.
         </p>
         </div>
     <div className="px-2 sm:px-6 md:px-8 py-4">

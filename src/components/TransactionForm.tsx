@@ -55,13 +55,15 @@ export default function TransactionForm({ onSuccess }: { onSuccess?: () => void 
       toast.success('Transaction added')
       reset()
       onSuccess?.()
-    } catch (error)
-     {
-      toast.error('Error adding transaction')
-    } finally {
-      setLoading(false)
-    }
-  }
+    } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : 'Something went wrong.';
+        toast.error(`Error adding transaction: ${errorMessage}`);
+      }
+      finally {
+            setLoading(false)
+          }
+        }
 
   const selectedCategory = watch('category')
 

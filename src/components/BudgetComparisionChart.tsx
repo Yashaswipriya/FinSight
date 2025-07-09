@@ -16,17 +16,17 @@ type Props = {
 }
 
 export default function BudgetComparisonChart({ budgets, transactions }: Props) {
-  const chartData = Object.keys(budgets).map((category) => {
-    const spent = transactions
-      .filter((tx) => tx.category === category)
-      .reduce((sum, tx) => sum + tx.amount, 0)
+//   const chartData = Object.keys(budgets).map((category) => {
+//     const spent = transactions
+//       .filter((tx) => tx.category === category)
+//       .reduce((sum, tx) => sum + tx.amount, 0)
 
-    return {
-      category,
-      Budget: budgets[category] || 0,
-      Spent: spent,
-    }
-  })
+//     return {
+//       category,
+//       Budget: budgets[category] || 0,
+//       Spent: spent,
+//     }
+//   })
 
   // In case some categories were spent on but not budgeted for:
  const allCategories = Array.from(
