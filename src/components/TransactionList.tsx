@@ -96,7 +96,7 @@ export default function TransactionList() {
       try {
         const res = await axios.get('/api/transactions')
         setTransactions(res.data.data)
-      } catch (err) {
+      } catch (error) {
         setError('Failed to load transactions')
       } finally {
         setLoading(false)
@@ -117,7 +117,7 @@ export default function TransactionList() {
 
       toast.success('Transaction updated')
       setEditingId(null)
-    } catch (err) {
+    } catch (error) {
       toast.error('Failed to update')
     }
   }

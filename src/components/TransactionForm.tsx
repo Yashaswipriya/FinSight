@@ -55,7 +55,8 @@ export default function TransactionForm({ onSuccess }: { onSuccess?: () => void 
       toast.success('Transaction added')
       reset()
       onSuccess?.()
-    } catch (err) {
+    } catch (error)
+     {
       toast.error('Error adding transaction')
     } finally {
       setLoading(false)
