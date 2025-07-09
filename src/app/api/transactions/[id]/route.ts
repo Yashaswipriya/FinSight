@@ -15,13 +15,16 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   try {
     await Transaction.findByIdAndDelete(id);
     return NextResponse.json({ success: true, message: "Transaction deleted" });
-  } catch (_error) {
+  } catch (error) {
+  console.error('Failed to delete transaction:', error);
   return NextResponse.json(
-    { success: false, error: 'Failed to delete transaction' },
+    {
+      success: false,
+      message: 'Failed to delete transaction',
+    },
     { status: 500 }
   );
 }
-
 }
 
 export async function PATCH(req: NextRequest,  context: { params: { id: string }}) {
@@ -47,7 +50,15 @@ export async function PATCH(req: NextRequest,  context: { params: { id: string }
     }
 
     return NextResponse.json({ success: true, data: updated });
-  } catch (_error) {
-    return NextResponse.json({ success: false, error: "Failed to update transaction" }, { status: 500 });
-  }
+  }catch (error) {
+  console.error('Failed to update transaction:', error);
+  return NextResponse.json(
+    {
+      success: false,
+      message: 'Failed to update transaction',
+    },
+    { status: 500 }
+  );
+}
+
 }
