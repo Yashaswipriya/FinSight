@@ -3,10 +3,11 @@ import { connectToDatabase } from "@/lib/db";
 import {Transaction} from "@/models/transaction";
 import { Types } from "mongoose";
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+// DELETE handler
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
   await connectToDatabase();
 
-  const { id } = params;
+  const { id } = context.params;
 
   if (!Types.ObjectId.isValid(id)) {
     return NextResponse.json({ success: false, error: "Invalid ID format" }, { status: 400 });
@@ -16,19 +17,18 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     await Transaction.findByIdAndDelete(id);
     return NextResponse.json({ success: true, message: "Transaction deleted" });
   } catch (error) {
-  console.error('Failed to delete transaction:', error);
-  return NextResponse.json(
-    {
-      success: false,
-      message: 'Failed to delete transaction',
-    },
-    { status: 500 }
-  );
-}
+    console.error("Failed to delete transaction:", error);
+    return NextResponse.json(
+      { success: false, message: "Failed to delete transaction" },
+      { status: 500 }
+    );
+  }
 }
 
-export async function PATCH(req: NextRequest,  context: { params: { id: string }}) {
+// PATCH handler
+export async function PATCH(req: NextRequest, context: { params: { id: string } }) {
   await connectToDatabase();
+
   const { id } = context.params;
 
   if (!Types.ObjectId.isValid(id)) {
@@ -50,15 +50,12 @@ export async function PATCH(req: NextRequest,  context: { params: { id: string }
     }
 
     return NextResponse.json({ success: true, data: updated });
-  }catch (error) {
-  console.error('Failed to update transaction:', error);
-  return NextResponse.json(
-    {
-      success: false,
-      message: 'Failed to update transaction',
-    },
-    { status: 500 }
-  );
+  } catch (error) {
+    console.error("Failed to update transaction:", error);
+    return NextResponse.json(
+      { success: false, message: "Failed to update transaction" },
+      { status: 500 }
+    );
+  }
 }
 
-}
