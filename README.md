@@ -57,7 +57,7 @@ src/
 │   └── page.tsx                # Dashboard (homepage)
 │
 ├── components/
-│   ├── charts/                 # Reusable BarChart, PieChart
+│   ├── charts/                 # Reusable BarCharts
 │   ├── forms/                  # TransactionForm, BudgetForm
 │   └── ui/                     # shadcn/ui components (Button, Card, etc.)
 │
