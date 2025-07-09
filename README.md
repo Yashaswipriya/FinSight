@@ -46,6 +46,29 @@ This project was built with modern tools like **Next.js**, **MongoDB**, **Tailwi
 ---
 
 ## 📁 Folder Structure
-<pre> src/ ├── app/ │ ├── api/ │ │ ├── transactions/ # Backend API routes (GET, POST, DELETE) │ │ └── budgets/ # Backend routes for budgets │ ├── transactions/ # Transactions page (page.tsx) │ ├── budgets/ # Budgets page (page.tsx) │ └── page.tsx # Dashboard (homepage) │ ├── components/ │ ├── charts/ # BarChart, PieChart components │ ├── forms/ # TransactionForm, BudgetForm │ └── ui/ # shadcn/ui components (Card, Button, etc.) │ ├── lib/ │ ├── db.ts # MongoDB connection helper │ └── utils.ts # Chart helpers, category-color mapping, etc. │ └── models/ ├── transaction.ts # Mongoose schema for transactions └── budget.ts # Mongoose schema for budgets </pre>
+```text
+src/
+├── app/
+│   ├── api/
+│   │   ├── transactions/       # Backend API route for transactions (GET, POST, DELETE)
+│   │   └── budgets/            # Backend API route for budgets
+│   ├── transactions/           # Transactions page (page.tsx)
+│   ├── budgets/                # Budgets page (page.tsx)
+│   └── page.tsx                # Dashboard (homepage)
+│
+├── components/
+│   ├── charts/                 # Reusable BarChart, PieChart
+│   ├── forms/                  # TransactionForm, BudgetForm
+│   └── ui/                     # shadcn/ui components (Button, Card, etc.)
+│
+├── lib/
+│   ├── db.ts                   # MongoDB connection helper
+│   └── utils.ts                # Chart helpers, category-color mapping
+│
+└── models/
+    ├── transaction.ts          # Mongoose schema for transactions
+    └── budget.ts               # Mongoose schema for budgets
+```
+
 
 
