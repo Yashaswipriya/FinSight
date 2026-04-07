@@ -4,7 +4,7 @@ FinSight is a full-stack web application that helps users efficiently manage the
 
 This project was built with modern tools like **Next.js**, **MongoDB**, **Tailwind CSS**, **shadcn/ui**, and **Recharts**, ensuring both performance and scalability.
 
-> ✅ Live Demo: [https://finsight.vercel.app](https://finsight.vercel.app)
+> ✅ Live Demo: [https://fin-sight-flame.vercel.app/]
 
 ---
 
