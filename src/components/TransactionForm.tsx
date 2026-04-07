@@ -38,6 +38,12 @@ export default function TransactionForm({ onSuccess }: { onSuccess?: () => void 
     watch,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+      defaultValues: {
+        description: '',
+        amount: 0,
+        category: '',
+        date: new Date().toISOString().split('T')[0],
+      }
   })
 
   const onSubmit = async (data: FormValues) => {
